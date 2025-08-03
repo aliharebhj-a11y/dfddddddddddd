@@ -12,6 +12,7 @@ import { StatsSection } from './components/StatsSection';
 import { AllResultsSection } from './components/AllResultsSection';
 import { Footer } from './components/Footer';
 import { FloatingDonationButton } from './components/FloatingDonationButton';
+import { VisitorStats } from './components/VisitorStats';
 import { Clock, AlertCircle, BookOpen } from 'lucide-react';
 import { rankedStudents } from './data/students';
 import { calculateStats } from './utils/contestStats';
@@ -82,20 +83,23 @@ function App() {
         <FloatingDonationButton onNavigate={handleFullNavigation} isDarkMode={isDarkMode} />
       )}
       
+      {/* Visitor Stats - Show on all pages */}
+      <VisitorStats isDarkMode={isDarkMode} />
+      
       {/* Dark Mode Toggle - Fixed position */}
       <button
         onClick={toggleDarkMode}
-        className={`fixed top-4 left-4 z-50 p-3 rounded-full transition-all duration-300 transform hover:scale-110 ${
+        className={`fixed top-4 left-4 z-50 p-3 rounded-full transition-all duration-300 transform hover:scale-110 shadow-2xl ${
           isDarkMode 
-            ? 'bg-yellow-400 text-gray-900 hover:bg-yellow-300' 
-            : 'bg-gray-800 text-yellow-400 hover:bg-gray-700'
-        } shadow-lg hover:shadow-xl`}
+            ? 'bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 hover:from-yellow-300 hover:to-orange-300 shadow-yellow-400/50' 
+            : 'bg-gradient-to-r from-gray-800 to-gray-900 text-yellow-400 hover:from-gray-700 hover:to-gray-800 shadow-gray-800/50'
+        } hover:shadow-2xl hover:-translate-y-1`}
         aria-label="تبديل الوضع الليلي"
       >
         {isDarkMode ? (
-          <Sun className="w-6 h-6 animate-spin-slow" />
+          <Sun className="w-6 h-6 animate-spin-slow drop-shadow-lg" />
         ) : (
-          <Moon className="w-6 h-6 animate-pulse" />
+          <Moon className="w-6 h-6 animate-pulse drop-shadow-lg" />
         )}
       </button>
       
